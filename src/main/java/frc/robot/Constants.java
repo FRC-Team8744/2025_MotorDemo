@@ -23,6 +23,11 @@ public final class Constants {
   public static final int kMaxSpeedPercentAuto = 100;
   public static final int kMaxSpeedPercentTeleop = 100;
 
+  public static final int DRIVE_MODE_DUTY_CYCLE = 0;
+  public static final int DRIVE_MODE_POSITION = 1;
+  public static final int DRIVE_MODE_VELOCITY = 2;
+  public static final int DRIVE_MODE_LIMITED_POSITION = 3;
+
   public static final class MechanismConstants {
     public static final int kMotorNeoAddress = 8;
   }

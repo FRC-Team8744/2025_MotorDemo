@@ -6,7 +6,6 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.CommandNeo;
-import frc.robot.commands.CommandNeoPosition;
 import frc.robot.subsystems.MotorNeo;
 
 import java.util.Map;
@@ -42,7 +41,7 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Add commands to debug display
-    shuf_CmdList.add(new CommandNeo(m_motorNeo));
+    shuf_CmdList.add(new CommandNeo(m_motorNeo, Constants.DRIVE_MODE_DUTY_CYCLE));
 
     // Configure the trigger bindings
     configureBindings();
@@ -53,8 +52,9 @@ public class RobotContainer {
    */
   private void configureBindings() {
     // Schedule `DefaultCommand` when the A button is pressed, canceling on release.
-    new JoystickButton(m_driverController, Button.kA.value).whileTrue(new CommandNeo(m_motorNeo));
-    new JoystickButton(m_driverController, Button.kY.value).whileTrue(new CommandNeoPosition(m_motorNeo));
+    new JoystickButton(m_driverController, Button.kA.value).whileTrue(new CommandNeo(m_motorNeo, Constants.DRIVE_MODE_DUTY_CYCLE));
+    new JoystickButton(m_driverController, Button.kY.value).whileTrue(new CommandNeo(m_motorNeo, Constants.DRIVE_MODE_POSITION));
+    new JoystickButton(m_driverController, Button.kX.value).whileTrue(new CommandNeo(m_motorNeo, Constants.DRIVE_MODE_LIMITED_POSITION));
   }
 
   /**
