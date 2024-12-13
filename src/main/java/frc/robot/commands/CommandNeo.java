@@ -53,7 +53,7 @@ public class CommandNeo extends Command {
     boolean isDone = false;
 
     if (m_mode != Constants.DRIVE_MODE_DUTY_CYCLE) {
-      isDone = Math.abs(m_motorNeo.getPositionError()) < 0.5;
+      isDone = Math.abs(m_motorNeo.getPositionError()) < 0.1;
     }
 
     return isDone;
