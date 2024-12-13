@@ -6,6 +6,7 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.CommandNeo;
+import frc.robot.commands.ThreeSeqMotor;
 import frc.robot.subsystems.MotorNeo;
 
 import java.util.Map;
@@ -55,6 +56,7 @@ public class RobotContainer {
     new JoystickButton(m_driverController, Button.kA.value).whileTrue(new CommandNeo(m_motorNeo, Constants.DRIVE_MODE_DUTY_CYCLE));
     new JoystickButton(m_driverController, Button.kY.value).whileTrue(new CommandNeo(m_motorNeo, Constants.DRIVE_MODE_POSITION));
     new JoystickButton(m_driverController, Button.kX.value).whileTrue(new CommandNeo(m_motorNeo, Constants.DRIVE_MODE_LIMITED_POSITION));
+    new JoystickButton(m_driverController, Button.kB.value).whileTrue(new ThreeSeqMotor(m_motorNeo));
   }
 
   /**
