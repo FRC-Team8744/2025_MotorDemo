@@ -24,6 +24,8 @@ public class MotorNeo extends SubsystemBase {
   private RelativeEncoder Encoder;  // A separate object for measuring the motor position
   private SparkPIDController Ctrl;  // Object containing the PID controller and settings
 
+  private Lightbar Bar;  // LED strip
+
   // Objects for Shuffleboard debug display
   // Doc link: https://docs.wpilib.org/en/stable/docs/software/dashboards/shuffleboard/index.html#shuffleboard
   private ShuffleboardTab tab = Shuffleboard.getTab("MotorNeo");
@@ -56,6 +58,7 @@ public class MotorNeo extends SubsystemBase {
 
   // Creates a new motor driver object
   public MotorNeo() {
+    Bar = new Lightbar();
     // Creating the motor objects here, instead of in the class definition, will allow re-use of the object for multiple motors
     MotorDriver = new CANSparkMax(MechanismConstants.kMotorNeoAddress, MotorType.kBrushless);
     MotorDriver.restoreFactoryDefaults();  // Clear any old programs
@@ -237,6 +240,10 @@ public class MotorNeo extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    // Set LED color
+    Bar.clearLEDs();
+    int spot = (int)(Math.abs(getMotorPosition()*10));
+    if ((spot >= 0) && (spot < 60)) Bar.setRBG(spot, 100, 0, 0);
 
     // Only show debug information when needed (not during a match!)
     if (Constants.kDebugLevel >= Constants.DEBUG_LEVEL_ALL) {
